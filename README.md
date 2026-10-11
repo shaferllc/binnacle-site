@@ -2,7 +2,7 @@
 
 Binnacle's website: a Keel app on dply Edge (Workers runtime).
 
-- `/` marketing · `/buy` → Lemon Squeezy checkout (`LEMONSQUEEZY_CHECKOUT_URL`) · `/download` → newest DMG
+- `/` marketing · `/buy` → shafer.llc/account/buy/binnacle (Stripe Checkout; shafer.llc issues the license) · `/download` → newest DMG
 - `/appcast.xml` Sparkle feed built from `src/data/releases.ts`
 - DMGs live in `public/download/`, images in `public/img/`
 

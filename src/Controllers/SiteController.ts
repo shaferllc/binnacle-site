@@ -6,17 +6,17 @@ import { PrivacyPage, TermsPage } from "../views/legal.js";
 import { appcastXML, LATEST } from "../data/releases.js";
 
 const app = () => config<AppInfo>("app");
+const BUY_URL = "https://shafer.llc/account/buy/binnacle";
 
 /** Binnacle's site: marketing, checkout hand-off, downloads and the Sparkle feed. */
 export class SiteController {
   home(c: Ctx) {
-    return view(HomePage, { app: app(), checkout: checkoutURL(c) !== null });
+    return view(HomePage, { app: app() });
   }
 
-  /** The app's Buy buttons land here; Lemon Squeezy emails the license key after payment. */
+  /** Sign in at shafer.llc, then Stripe Checkout; the key lands on the account page after payment. */
   buy(c: Ctx) {
-    const url = checkoutURL(c);
-    return c.redirect(url ?? "/#pricing", 302);
+    return c.redirect(BUY_URL, 302);
   }
 
   /** Stable link to the newest DMG (the file itself is a static asset under /download/). */
@@ -42,11 +42,4 @@ export class SiteController {
   health(c: Ctx) {
     return c.json({ ok: true, app: "binnacle-site", version: app().version });
   }
-}
-
-/** LEMONSQUEEZY_CHECKOUT_URL (a dashboard var on dply / wrangler) — the product's checkout link. */
-function checkoutURL(c: Ctx): string | null {
-  const env = (c.env ?? {}) as Record<string, string | undefined>;
-  const url = env.LEMONSQUEEZY_CHECKOUT_URL ?? (typeof process !== "undefined" ? process.env?.LEMONSQUEEZY_CHECKOUT_URL : undefined);
-  return url && url.startsWith("https://") ? url : null;
 }

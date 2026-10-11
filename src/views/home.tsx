@@ -13,7 +13,18 @@ const FEATURES = [
   { lbl: "Light", title: "Doesn't become the problem", body: "Samples every 5 seconds with no window open, drawn as plain menu bar bitmaps. Around half a percent of one core at idle." },
 ];
 
-export const HomePage: FC<{ app: AppInfo; checkout: boolean }> = ({ app, checkout }) => (
+const SHOTS = [
+  { id: "cpu", label: "CPU", cap: "Load, temperatures, both fans (with manual control) and the apps behind the CPU" },
+  { id: "memory", label: "Memory", cap: "Pressure, compressed and swap, and which apps hold the memory" },
+  { id: "disk", label: "Disk", cap: "Read and write rates, free space and the apps doing the I/O" },
+  { id: "gpu", label: "GPU", cap: "GPU use per app, without root" },
+  { id: "battery", label: "Battery", cap: "Power draw, health, cycles and per-app energy" },
+  { id: "history", label: "History", cap: "30 days per app: CPU, memory, GPU, network and disk" },
+];
+
+const FIRST = SHOTS[0]!;
+
+export const HomePage: FC<{ app: AppInfo }> = ({ app }) => (
   <Layout title={`${app.name} — ${app.tagline}`} description={app.description} url={app.url} image={`${app.url}/img/card.png`}>
     <Nav />
     <main class="wrap">
@@ -32,11 +43,57 @@ export const HomePage: FC<{ app: AppInfo; checkout: boolean }> = ({ app, checkou
           <div class="req">{app.trialDays}-day free trial · {app.price} once, no subscription · {app.requires}</div>
         </div>
         <div>
-          <div class="shot"><img src="/img/card.png" alt="Binnacle: CPU, memory and the apps using the most memory" /></div>
-          <div class="cap">A real reading, shared from Binnacle</div>
+          <div class="shot"><img src="/img/app/overview.webp" width="1600" height="1250" alt="Binnacle's Command Deck: CPU, memory, per-core meters and a per-app CPU waterfall" /></div>
+          <div class="cap">The Command Deck, on a real Mac</div>
         </div>
       </div>
     </main>
+
+    <section id="demo">
+      <div class="wrap">
+        <div class="kicker">Try it here</div>
+        <h2>Drive the Command Deck</h2>
+        <p class="sub">A working copy of Binnacle's ⌘K line, running on sample data in your browser. Type a command, tap a suggestion, or click an app.</p>
+        <div class="dm">
+          <div class="dm-strip"><span class="brand">BINNACLE<span>//DECK</span></span><span class="dm-tag">DEMO · SAMPLE DATA</span><span class="dm-clock">--:--:--</span></div>
+          <div class="dm-body">
+            <div class="dm-gauges">
+              <div><div class="dm-lbl">CPU %</div><div class="dm-flap dm-cpu">000</div></div>
+              <div><div class="dm-lbl">MEM GB</div><div class="dm-flap dm-mem amber">00.0</div></div>
+              <div class="dm-leds" aria-hidden="true"></div>
+              <div class="dm-lbl">10 cores · 8P + 2E</div>
+            </div>
+            <div class="dm-rows" aria-live="off"></div>
+          </div>
+          <pre class="dm-out" aria-live="polite"></pre>
+          <form class="dm-form">
+            <label for="dm-input">›</label>
+            <input id="dm-input" autocomplete="off" spellcheck={false} placeholder="type a command, e.g. port 3000" />
+            <kbd>⌘K</kbd>
+          </form>
+          <div class="dm-chips">
+            {["why chrome", "port 3000", "kill port 3000", "ports", "top 3", "sort mem", "quit slack", "reset"].map((c) => (
+              <button type="button" data-cmd={c}>{c}</button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tour">
+      <div class="wrap">
+        <div class="kicker">The real app</div>
+        <h2>Every page, one keystroke away</h2>
+        <p class="sub">Unretouched screenshots from Binnacle on an M1 Max. ⌘1 through ⌘0 jumps between them.</p>
+        <div class="tour-tabs" role="tablist">
+          {SHOTS.map((s, i) => (
+            <button type="button" role="tab" aria-selected={i === 0 ? "true" : "false"} data-shot={s.id} data-cap={s.cap}>{s.label}</button>
+          ))}
+        </div>
+        <div class="shot tour-img"><img src={`/img/app/${FIRST.id}.webp`} width="1600" height="1250" loading="lazy" alt={`Binnacle's ${FIRST.label} page`} /></div>
+        <div class="cap tour-cap">{FIRST.cap}</div>
+      </div>
+    </section>
 
     <section id="features">
       <div class="wrap">
@@ -109,11 +166,11 @@ export const HomePage: FC<{ app: AppInfo; checkout: boolean }> = ({ app, checkou
             <li>Every feature free for {app.trialDays} days, no account, no card</li>
             <li>After the trial the menu bar readouts stay free forever</li>
             <li>A license unlocks the Command Deck, ⌘K, alerts, history and the MCP server</li>
-            <li>Free updates; the key arrives by email</li>
+            <li>Free updates; your key lives on your shafer.llc account and comes straight back to the app after checkout</li>
           </ul>
           <div class="cta">
             <a class="btn btn-teal" href="/download">Download free trial</a>
-            <a class="btn btn-line" href="/buy">{checkout ? `Buy · ${app.price}` : "Buying opens soon"}</a>
+            <a class="btn btn-line" href="/buy">Buy · {app.price}</a>
           </div>
           <div class="req">{app.requires}</div>
         </div>
@@ -126,15 +183,16 @@ export const HomePage: FC<{ app: AppInfo; checkout: boolean }> = ({ app, checkou
         <details><summary>What happens when the trial ends?</summary>
           <p>The menu bar items and their dropdowns keep working, free. The Command Deck, ⌘K commands, alerts, history and the MCP server ask for a license.</p></details>
         <details><summary>Does Binnacle send my data anywhere?</summary>
-          <p>No telemetry. It only goes online to activate your license and to check for updates. History stays in one file on your Mac.</p></details>
+          <p>No telemetry. It only goes online to check your license with shafer.llc and to check for updates. History stays in one file on your Mac.</p></details>
         <details><summary>Why does it ask to install a helper?</summary>
           <p>It's optional. The helper reads processes macOS hides from normal apps and sets fan speeds. It can't do anything else.</p></details>
         <details><summary>Can I use my license on another Mac?</summary>
-          <p>Yes. Deactivate it in Settings › License on the old Mac, then activate it on the new one.</p></details>
+          <p>Yes. On the new Mac, click Register in Settings › License and sign in; your key comes back without paying again. Your shafer.llc account lists every Mac using it, and you can remove one there.</p></details>
         <details><summary>Intel Macs?</summary>
           <p>Not at the moment. Binnacle is built for Apple silicon and macOS 14 or later.</p></details>
       </div>
     </section>
     <Footer version={app.version} />
+    <script src="/demo.js" defer></script>
   </Layout>
 );

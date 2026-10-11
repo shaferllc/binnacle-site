@@ -9,18 +9,18 @@ export const PrivacyPage: FC<{ app: AppInfo }> = ({ app }) => (
     <Nav />
     <main class="wrap prose">
       <h1>Privacy</h1>
-      <p>Binnacle has no telemetry, analytics or accounts. What it measures about your Mac stays on your Mac.</p>
+      <p>Binnacle has no telemetry or analytics. What it measures about your Mac stays on your Mac.</p>
       <h2>On your Mac</h2>
       <p>Readings and 30 days of per-app history are kept in one local file. Nothing in it is uploaded.</p>
       <h2>When Binnacle goes online</h2>
-      <p><b>License activation and a weekly check:</b> your license key, an activation id and your Mac's name go to Lemon Squeezy, our reseller, to confirm the license.</p>
+      <p><b>License activation and a weekly check:</b> your license key, your Mac's name and a one-way hash of its hardware ID (not the ID itself) go to shafer.llc to confirm the license and list the Mac on your account.</p>
       <p><b>Update checks:</b> Binnacle fetches {app.url}/appcast.xml to see whether a newer version exists.</p>
       <h2>Buying</h2>
-      <p>Purchases are handled by Lemon Squeezy as merchant of record. They receive your payment details and email address under their own privacy policy; we receive your email and order details so we can support your license.</p>
+      <p>You buy through a shafer.llc account: you sign in with a link sent to your email, no password. Payment is handled by Stripe, which receives your card details under its own privacy policy; we never see them. We keep your email, your order and your license key so we can support your license.</p>
       <h2>This website</h2>
       <p>No cookies or trackers. Our host keeps standard request logs.</p>
       <h2>Contact</h2>
-      <p>Questions: reply to your purchase email.</p>
+      <p>Questions: <a href="https://shafer.llc/support?product=binnacle">shafer.llc/support</a>, or reply to your receipt.</p>
     </main>
     <Footer version={app.version} />
   </Layout>
