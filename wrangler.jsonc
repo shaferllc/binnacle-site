@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "binnacle-site",
+  "main": "src/worker.ts",
+  // nodejs_compat from 2025-04-01 fills process.env from vars and secrets.
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // Screenshots, the share card and the DMGs under /download/.
+  "assets": { "directory": "./public" },
+  "workers_dev": true,
+  // Set LEMONSQUEEZY_CHECKOUT_URL in the dply dashboard (or `dply edge env set`), not here.
+  "observability": { "enabled": true }
+}

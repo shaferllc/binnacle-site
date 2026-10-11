@@ -1,0 +1,2 @@
+# dply Edge deploy manifest for Binnacle's site (Keel on Workers).
+# Env: LEMONSQUEEZY_CHECKOUT_URL — set with `dply edge env set` or in the dashboard.
