@@ -3,10 +3,11 @@ import { config, view } from "@shaferllc/keel/core";
 import type { AppInfo } from "../config.js";
 import { HomePage } from "../views/home.js";
 import { PrivacyPage, TermsPage } from "../views/legal.js";
-import { appcastXML, LATEST } from "../data/releases.js";
 
 const app = () => config<AppInfo>("app");
 const BUY_URL = "https://shafer.llc/account/buy/binnacle";
+/** Installers and the Sparkle feed live on R2, like Ledge (scripts/publish-downloads.sh in the app repo). */
+const DL = "https://dl.shafer.llc/binnacle";
 
 /** Binnacle's site: marketing, checkout hand-off, downloads and the Sparkle feed. */
 export class SiteController {
@@ -19,16 +20,14 @@ export class SiteController {
     return c.redirect(BUY_URL, 302);
   }
 
-  /** Stable link to the newest DMG (the file itself is a static asset under /download/). */
+  /** The newest DMG. */
   download(c: Ctx) {
-    return c.redirect(`/download/${LATEST.file}`, 302);
+    return c.redirect(`${DL}/Binnacle.dmg`, 302);
   }
 
-  /** Binnacle's built-in Sparkle updater polls this (SUFeedURL). */
+  /** Builds that read the feed from the site find it on R2. */
   appcast(c: Ctx) {
-    c.header("Content-Type", "application/xml; charset=utf-8");
-    c.header("Cache-Control", "public, max-age=300");
-    return c.body(appcastXML(new URL(c.req.url).origin));
+    return c.redirect(`${DL}/appcast.xml`, 301);
   }
 
   privacy(c: Ctx) {
