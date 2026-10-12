@@ -19,7 +19,7 @@ export const config: ConfigData = {
     description:
       "A fast, native Mac activity monitor for your menu bar. It shows which app is behind every number, and lets you fix it: quit it, free the port, cool the fans.",
     version: "0.1.0",
-    url: "https://binnacle.dply.app",
+    url: "https://binnacle.shafer.llc",
     price: "$9",
     trialDays: 14,
     requires: "macOS 14 Sonoma or later · Apple silicon",
