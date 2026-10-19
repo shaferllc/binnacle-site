@@ -94,6 +94,11 @@ const STYLES = `
   .prose { max-width: 44rem; padding: 3.5rem 0; color: var(--ink-2); }
   .prose h1 { color: var(--ink); letter-spacing: -0.03em; }
   .prose h2 { font-size: 1.3rem; margin-top: 2rem; color: var(--ink); }
+  .prose h3 { font-size: 1rem; margin: 1.4rem 0 .3rem; color: var(--ink); }
+  .prose table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+  .prose th, .prose td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--line); }
+  .prose th { color: var(--ink); font-weight: 600; white-space: nowrap; }
+  .prose code { font-family: var(--mono); font-size: .85em; color: var(--teal); }
 
   footer { border-top: 1px solid var(--line); padding: 2.2rem 0; font-family: var(--mono); font-size: .76rem; color: var(--ink-3); }
   footer .row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
@@ -175,6 +180,7 @@ export const Footer: FC<{ version: string }> = ({ version }) => (
     <div class="wrap row">
       <span>Binnacle v{version} · made by Tom Shafer</span>
       <nav>
+        <a href="/press">Press</a>
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
         <a href="/buy">Buy</a>

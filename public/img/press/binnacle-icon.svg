@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Binnacle app icon. Hand-translated from make-icon.swift (1024 px rendering); keep the two in sync. -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1F3D66"/>
+      <stop offset="1" stop-color="#081229"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0.281" y1="-0.102" x2="0.719" y2="1.102">
+      <stop offset="0" stop-color="#EDC266"/>
+      <stop offset="1" stop-color="#996B29"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAF5E6"/>
+      <stop offset="1" stop-color="#D6D1C2"/>
+    </linearGradient>
+    <line id="tick" x1="251.232" y1="0" x2="274.072" y2="0"/>
+    <line id="tick-long" x1="228.393" y1="0" x2="274.072" y2="0"/>
+    <polygon id="slate" points="211.264,0 0,37.114 -22.268,0 0,-37.114" fill="#2E384D"/>
+  </defs>
+
+  <rect width="1024" height="1024" rx="230.4" ry="230.4" fill="url(#night)"/>
+
+  <g transform="translate(512 512)">
+    <circle r="348.16" fill="url(#brass)"/>
+    <circle r="285.491" fill="url(#card)"/>
+
+    <g stroke="#333D4D" stroke-width="6.144">
+      <use xlink:href="#tick-long"/>
+      <use xlink:href="#tick" transform="rotate(11.25)"/>
+      <use xlink:href="#tick" transform="rotate(22.5)"/>
+      <use xlink:href="#tick" transform="rotate(33.75)"/>
+      <use xlink:href="#tick-long" transform="rotate(45)"/>
+      <use xlink:href="#tick" transform="rotate(56.25)"/>
+      <use xlink:href="#tick" transform="rotate(67.5)"/>
+      <use xlink:href="#tick" transform="rotate(78.75)"/>
+      <use xlink:href="#tick-long" transform="rotate(90)"/>
+      <use xlink:href="#tick" transform="rotate(101.25)"/>
+      <use xlink:href="#tick" transform="rotate(112.5)"/>
+      <use xlink:href="#tick" transform="rotate(123.75)"/>
+      <use xlink:href="#tick-long" transform="rotate(135)"/>
+      <use xlink:href="#tick" transform="rotate(146.25)"/>
+      <use xlink:href="#tick" transform="rotate(157.5)"/>
+      <use xlink:href="#tick" transform="rotate(168.75)"/>
+      <use xlink:href="#tick-long" transform="rotate(180)"/>
+      <use xlink:href="#tick" transform="rotate(191.25)"/>
+      <use xlink:href="#tick" transform="rotate(202.5)"/>
+      <use xlink:href="#tick" transform="rotate(213.75)"/>
+      <use xlink:href="#tick-long" transform="rotate(225)"/>
+      <use xlink:href="#tick" transform="rotate(236.25)"/>
+      <use xlink:href="#tick" transform="rotate(247.5)"/>
+      <use xlink:href="#tick" transform="rotate(258.75)"/>
+      <use xlink:href="#tick-long" transform="rotate(270)"/>
+      <use xlink:href="#tick" transform="rotate(281.25)"/>
+      <use xlink:href="#tick" transform="rotate(292.5)"/>
+      <use xlink:href="#tick" transform="rotate(303.75)"/>
+      <use xlink:href="#tick-long" transform="rotate(315)"/>
+      <use xlink:href="#tick" transform="rotate(326.25)"/>
+      <use xlink:href="#tick" transform="rotate(337.5)"/>
+      <use xlink:href="#tick" transform="rotate(348.75)"/>
+    </g>
+
+    <!-- The rose: slate east, west and south; red north on top; brass hub. -->
+    <use xlink:href="#slate"/>
+    <use xlink:href="#slate" transform="rotate(180)"/>
+    <use xlink:href="#slate" transform="rotate(90)"/>
+    <polygon points="228.393,0 0,42.824 -25.694,0 0,-42.824" fill="#D6332E" transform="rotate(-90)"/>
+    <circle r="19.984" fill="#EDC266"/>
+  </g>
+</svg>

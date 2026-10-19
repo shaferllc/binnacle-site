@@ -3,6 +3,7 @@ import { config, view } from "@shaferllc/keel/core";
 import type { AppInfo } from "../config.js";
 import { HomePage } from "../views/home.js";
 import { PrivacyPage, TermsPage } from "../views/legal.js";
+import { PressPage } from "../views/press.js";
 
 const app = () => config<AppInfo>("app");
 const BUY_URL = "https://shafer.llc/account/buy/binnacle";
@@ -28,6 +29,10 @@ export class SiteController {
   /** Builds that read the feed from the site find it on R2. */
   appcast(c: Ctx) {
     return c.redirect(`${DL}/appcast.xml`, 301);
+  }
+
+  press(c: Ctx) {
+    return view(PressPage, { app: app() });
   }
 
   privacy(c: Ctx) {
