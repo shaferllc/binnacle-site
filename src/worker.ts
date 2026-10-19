@@ -7,12 +7,13 @@
  */
 
 import { createApp } from "./bootstrap/app.js";
-import { rememberSource } from "./source.js";
+import { logHit, rememberSource } from "./source.js";
 
 const app = await createApp();
 
 export default {
   async fetch(request: Request, env: unknown, ctx: ExecutionContext): Promise<Response> {
+    logHit(request);
     return rememberSource(request, await app.fetch(request, env, ctx));
   },
 };

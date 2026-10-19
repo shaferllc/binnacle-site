@@ -18,7 +18,7 @@ export const PrivacyPage: FC<{ app: AppInfo }> = ({ app }) => (
       <h2>Buying</h2>
       <p>You buy through a shafer.llc account: you sign in with a link sent to your email, no password. Payment is handled by Stripe, which receives your card details under its own privacy policy; we never see them. We keep your email, your order and your license key so we can support your license.</p>
       <h2>This website</h2>
-      <p>No cookies or trackers. Our host keeps standard request logs.</p>
+      <p>No third-party scripts or trackers. One first-party cookie, <code>src</code>, remembers which link brought you here (for example a post on Bluesky) for 90 days, so we can count visits and downloads by where they came from. Those counts don't include your IP address. Our host keeps standard request logs.</p>
       <h2>Contact</h2>
       <p>Questions: <a href="https://shafer.llc/support?product=binnacle">shafer.llc/support</a>, or reply to your receipt.</p>
     </main>

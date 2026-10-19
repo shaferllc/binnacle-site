@@ -14,7 +14,7 @@ const SHOTS: [string, string, string][] = [
   ["binnacle-6.png", "GPU", "utilization, average, peak, GPU memory, and apps by GPU"],
   ["binnacle-7.png", "Battery", "charge, power draw, adapter, health, cycle count, temperature, and apps by energy"],
   ["binnacle-8.png", "Sound", "output device and volume, apps playing now, apps using the microphone, and all inputs and outputs"],
-  // binnacle-9.png (Projects) is held back until it's re-shot with demo projects.
+  ["binnacle-9.png", "Projects", "dev servers grouped by project folder with ports, idle time, CPU, memory and Stop buttons"],
 ];
 
 /** Also in public/img/press/ (from marketing/press/ in the app repo). */
@@ -34,7 +34,7 @@ export const PressPage: FC<{ app: AppInfo }> = ({ app }) => (
     <Nav />
     <main class="wrap prose">
       <h1>Binnacle press kit</h1>
-      <p><b>For interviews, review licenses or assets, email <a href="mailto:press@shafer.llc">press@shafer.llc</a>.</b></p>
+      <p><b>For interviews, review licenses or assets, email <a href="mailto:press@shafer.llc">press@shafer.llc</a>. I reply within two business days.</b></p>
 
       <h2>The pitch</h2>
       <p>
