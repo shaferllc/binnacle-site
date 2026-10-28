@@ -2,6 +2,7 @@
 // @jsxImportSource hono/jsx
 import type { FC } from "hono/jsx";
 import type { AppInfo } from "../config.js";
+import { type BlogPost, FromTheBlog } from "./blog.js";
 import { Footer, Layout, Nav } from "./layout.js";
 
 const FEATURES = [
@@ -24,7 +25,7 @@ const SHOTS = [
 
 const FIRST = SHOTS[0]!;
 
-export const HomePage: FC<{ app: AppInfo }> = ({ app }) => (
+export const HomePage: FC<{ app: AppInfo; posts?: BlogPost[] }> = ({ app, posts = [] }) => (
   <Layout title={`${app.name} — ${app.tagline}`} description={app.description} url={app.url} image={`${app.url}/img/card.png`}>
     <Nav />
     <main class="wrap">
@@ -176,6 +177,8 @@ export const HomePage: FC<{ app: AppInfo }> = ({ app }) => (
         </div>
       </div>
     </section>
+
+    <FromTheBlog posts={posts} />
 
     <section class="faq">
       <div class="wrap">

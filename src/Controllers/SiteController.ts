@@ -1,6 +1,7 @@
 import type { Ctx } from "@shaferllc/keel/core";
 import { config, view } from "@shaferllc/keel/core";
 import type { AppInfo } from "../config.js";
+import { blogPosts } from "../views/blog.js";
 import { HomePage } from "../views/home.js";
 import { PrivacyPage, TermsPage } from "../views/legal.js";
 import { PressPage } from "../views/press.js";
@@ -12,8 +13,8 @@ const DL = "https://dl.shafer.llc/binnacle";
 
 /** Binnacle's site: marketing, checkout hand-off, downloads and the Sparkle feed. */
 export class SiteController {
-  home(c: Ctx) {
-    return view(HomePage, { app: app() });
+  async home(c: Ctx) {
+    return view(HomePage, { app: app(), posts: await blogPosts() });
   }
 
   /** Sign in at shafer.llc, then Stripe Checkout; the key lands on the account page after payment. */

@@ -181,6 +181,7 @@ export const Footer: FC<{ version: string }> = ({ version }) => (
       <span>Binnacle v{version} · made by Tom Shafer</span>
       <nav>
         <a href="/press">Press</a>
+        <a href="https://shafer.llc/blog">Blog</a>
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
         <a href="/buy">Buy</a>
